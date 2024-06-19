@@ -217,6 +217,7 @@ export type SignInPageErrorParam =
   | "EmailSignin"
   | "CredentialsSignin"
   | "SessionRequired"
+  | "BlockedByConditionalAccessPolicy"
 
 export interface PagesOptions {
   /**

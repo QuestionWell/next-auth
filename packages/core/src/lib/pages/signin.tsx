@@ -19,6 +19,7 @@ const signinErrors: Record<SignInPageErrorParam | "default", string> = {
   CredentialsSignin:
     "Sign in failed. Check the details you provided are correct.",
   SessionRequired: "Please sign in to access this page.",
+  BlockedByConditionalAccessPolicy: "Access has been blocked by Conditional Access policies. Contact your Entra Admin for assistance.",
 }
 
 function ConditionalUIScript(providerID: string) {
