@@ -181,7 +181,7 @@ export async function Auth(
       return Response.json(null, { status: 400 })
 
     const isClientSafeErrorType = isClientError(error)
-    const type = isClientSafeErrorType ? getErrorType(error) : "Configuration"
+    const type = isClientSafeErrorType ? getDetailedErrorType(error) : "Configuration"
 
     const params = new URLSearchParams({ error: type })
     if (error instanceof CredentialsSignin) params.set("code", error.code)
@@ -196,7 +196,7 @@ export async function Auth(
   }
 }
 
-const getErrorType = (error: AuthError) => {
+const getDetailedErrorType = (error: AuthError) => {
   // invalid_grant (AADSTS53003: Access has been blocked by Conditional Access policies. The access policy does not allow token issuance. Trace ID: 8bc3b48a-d1a7-4fb5-8809-402edce25800 Correlation ID: f4b1bb12-bf19-438c-9f82-f056f4fd6ed4 Timestamp: 2024-06-18 18:48:34Z)
   if (error.message.includes("AADSTS53003")) return "BlockedByConditionalAccessPolicy"
   return error.type;
